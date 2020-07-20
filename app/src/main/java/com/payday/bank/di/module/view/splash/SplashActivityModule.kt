@@ -1,4 +1,4 @@
-package com.payday.bank.di.module.activity
+package com.payday.bank.di.module.view.splash
 
 import com.payday.bank.di.scope.ActivityScope
 import com.payday.bank.view.activity.BaseActivity

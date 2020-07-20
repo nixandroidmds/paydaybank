@@ -15,10 +15,11 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.security.cert.CertPathValidatorException
 import javax.inject.Inject
+import javax.inject.Singleton
 import javax.net.ssl.SSLException
 import javax.net.ssl.SSLHandshakeException
 
-class ErrorInterceptor @Inject constructor(
+@Singleton class ErrorInterceptor @Inject constructor(
     private val resources: Resources
 ) : Interceptor {
 
@@ -87,14 +88,13 @@ class ErrorInterceptor @Inject constructor(
         when {
             code == HttpCodes.FORBIDDEN || code == HttpCodes.UNAUTHORIZED -> {
                 throw MessageException(
-                    message = resources.getString(R.string.access_unauthorized),
+                    message = resources.getString(R.string.access_unauthorized_error),
                     logMessage = getServerError(code)
                 )
             }
 
             code == HttpCodes.BAD_REQUEST ||
                     code == HttpCodes.PAYMENT_REQUIRED ||
-                    code == HttpCodes.NOT_FOUND ||
                     code == HttpCodes.UNPROCESSABLE_ENTITY -> {
                 TODO(url + "custom process error")
             }

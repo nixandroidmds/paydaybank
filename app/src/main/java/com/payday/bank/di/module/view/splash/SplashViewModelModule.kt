@@ -1,13 +1,15 @@
-package com.payday.bank.di.module.activity
+package com.payday.bank.di.module.view.splash
 
 import androidx.lifecycle.ViewModel
 import com.payday.bank.di.mapkey.ViewModelKey
+import com.payday.bank.di.module.data.repository.RepositoryModule
 import com.payday.bank.presentation.viewmodel.SplashViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module interface SplashViewModelModule {
+@Module(includes = [RepositoryModule::class])
+interface SplashViewModelModule {
 
     @Binds
     @IntoMap

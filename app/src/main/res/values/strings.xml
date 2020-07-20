@@ -9,6 +9,6 @@
     <string name="unknown_error">Unknown Error</string>
     <string name="ssl_handshake_error">SSL Handshake Error</string>
     <string name="internet_error">Internet connection unavailable</string>
-    <string name="access_unauthorized">Access unauthorized</string>
+    <string name="access_unauthorized_error">Access unauthorized</string>
 
 </resources>
