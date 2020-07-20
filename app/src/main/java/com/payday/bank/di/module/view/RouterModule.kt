@@ -1,4 +1,4 @@
-package com.payday.bank.di.module
+package com.payday.bank.di.module.view
 
 import com.payday.bank.di.scope.ActivityScope
 import dagger.Module

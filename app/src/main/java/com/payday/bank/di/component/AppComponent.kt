@@ -2,10 +2,8 @@ package com.payday.bank.di.component
 
 import android.content.Context
 import com.payday.bank.Application
-import com.payday.bank.di.module.ActivitiesProvider
 import com.payday.bank.di.module.ContextModule
-import com.payday.bank.di.module.NetworkModule
-import com.payday.bank.di.module.RetrofitModule
+import com.payday.bank.di.module.view.ActivitiesContributorModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -16,10 +14,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ActivitiesProvider::class,
-        ContextModule::class,
-        NetworkModule::class,
-        RetrofitModule::class
+        ActivitiesContributorModule::class,
+        ContextModule::class
     ]
 )
 interface AppComponent : AndroidInjector<Application> {

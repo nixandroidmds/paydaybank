@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import com.payday.bank.BuildConfig
 import com.payday.bank.domain.exception.MessageException
+import com.payday.bank.domain.exception.TokenExpiredException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
@@ -50,10 +51,14 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     @WorkerThread open fun onFailure(t: Throwable) {
-        if (t is MessageException) {
-            errorLiveEvent.postValue(t.getMessageForUser())
-        } else {
-            Timber.e(t)
+        when (t) {
+            is MessageException -> errorLiveEvent.postValue(t.getMessageForUser())
+
+            is TokenExpiredException -> {
+                // ignored
+            }
+
+            else -> Timber.e(t)
         }
     }
 

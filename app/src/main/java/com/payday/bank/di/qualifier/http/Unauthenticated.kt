@@ -1,4 +1,4 @@
-package com.payday.bank.di.qualifier
+package com.payday.bank.di.qualifier.http
 
 import javax.inject.Qualifier
 
@@ -10,4 +10,4 @@ import javax.inject.Qualifier
 @Qualifier
 @MustBeDocumented
 @Retention
-annotation class Remote
+annotation class Unauthenticated

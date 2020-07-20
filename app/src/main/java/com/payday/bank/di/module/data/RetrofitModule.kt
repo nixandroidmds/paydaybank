@@ -1,9 +1,10 @@
-package com.payday.bank.di.module
+package com.payday.bank.di.module.data
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.payday.bank.BuildConfig
-import com.payday.bank.data.api.ApiService
+import com.payday.bank.data.api.ApiAuthenticatedService
+import com.payday.bank.data.api.ApiUnauthenticatedService
 import com.payday.bank.util.gson.DateDeserializer
 import dagger.Module
 import dagger.Provides
@@ -23,11 +24,20 @@ import javax.inject.Singleton
             .create()
 
     @Singleton @Provides
-    fun provideApiService(gson: Gson, client: OkHttpClient): ApiService =
+    fun provideApiService(gson: Gson, client: OkHttpClient): ApiUnauthenticatedService =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(ApiService::class.java)
+            .create(ApiUnauthenticatedService::class.java)
+
+    @Singleton @Provides
+    fun provideApiAuthServiceService(gson: Gson, client: OkHttpClient): ApiAuthenticatedService =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(ApiAuthenticatedService::class.java)
 }

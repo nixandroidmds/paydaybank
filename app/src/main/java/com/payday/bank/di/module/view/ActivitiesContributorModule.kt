@@ -1,13 +1,13 @@
-package com.payday.bank.di.module
+package com.payday.bank.di.module.view
 
-import com.payday.bank.di.module.activity.SplashActivityModule
-import com.payday.bank.di.module.activity.SplashViewModelModule
+import com.payday.bank.di.module.view.splash.SplashActivityModule
+import com.payday.bank.di.module.view.splash.SplashViewModelModule
 import com.payday.bank.di.scope.ActivityScope
 import com.payday.bank.view.activity.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module abstract class ActivitiesProvider {
+@Module interface ActivitiesContributorModule {
 
     @ActivityScope
     @ContributesAndroidInjector(

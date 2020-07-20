@@ -19,6 +19,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BASE_URL", "\"https://localhost/\"")
+        buildConfigField "String[]", "CERTIFICATE_ARR", "{}"
     }
 
     androidExtensions {
