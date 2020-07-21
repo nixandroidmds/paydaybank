@@ -1,4 +1,4 @@
-package com.payday.bank.presentation
+package com.payday.bank.presentation.authentication
 
 import com.hadilq.liveevent.LiveEvent
 import com.payday.bank.data.repository.base.AuthenticationRepository

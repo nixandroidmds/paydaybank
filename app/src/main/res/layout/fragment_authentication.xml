@@ -6,7 +6,7 @@
     style="@style/MatchParent"
     android:fillViewport="true"
     android:paddingTop="@dimen/default_margin"
-    tools:context=".view.activity.AuthenticationActivity">
+    tools:context=".view.activity.authentication.AuthenticationActivity">
 
     <LinearLayout
         style="@style/Wide"

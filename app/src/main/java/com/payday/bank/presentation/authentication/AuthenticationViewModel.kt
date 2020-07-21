@@ -1,10 +1,11 @@
-package com.payday.bank.presentation
+package com.payday.bank.presentation.authentication
 
 import android.text.Editable
 import androidx.core.content.res.ResourcesCompat.ID_NULL
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.hadilq.liveevent.LiveEvent
 import com.payday.bank.R
 import com.payday.bank.data.repository.base.AuthenticationRepository
 import com.payday.bank.domain.entity.Gender
@@ -20,8 +21,9 @@ class AuthenticationViewModel @Inject constructor(
     private val authenticationRepository: AuthenticationRepository
 ) : BaseViewModel() {
 
-    // todo ProgressLiveEvent
+    val openTransactionsScreenLiveData = LiveEvent<Unit>()
 
+    val progressLiveData = MutableLiveData(false)
     val signUpModeEnabledLiveData = MutableLiveData(false)
 
     val emailErrorVisibleLiveData = MutableLiveData(ID_NULL)
@@ -45,6 +47,8 @@ class AuthenticationViewModel @Inject constructor(
             passwordErrorVisibleLiveData.postValue(ID_NULL)
         } else {
             launchSafe {
+                progressLiveData.postValue(true)
+
                 val email = emailEditable?.toString()?.trim()
                 val password = passwordEditable?.toString()
 
@@ -66,8 +70,9 @@ class AuthenticationViewModel @Inject constructor(
                             password = password
                         )
                     )
+                    openTransactionsScreenLiveData.postValue(Unit)
                 }
-            }
+            }.invokeOnCompletion { progressLiveData.postValue(false) }
         }
     }
 
@@ -84,6 +89,8 @@ class AuthenticationViewModel @Inject constructor(
             passwordErrorVisibleLiveData.postValue(ID_NULL)
         } else {
             launchSafe {
+                progressLiveData.postValue(true)
+
                 val email = emailEditable?.toString()?.trim()
                 val password = passwordEditable?.toString()
                 val firstName = firstNameEditable?.toString()?.trim()
@@ -142,8 +149,9 @@ class AuthenticationViewModel @Inject constructor(
                             phone = phone
                         )
                     )
+                    openTransactionsScreenLiveData.postValue(Unit)
                 }
-            }
+            }.invokeOnCompletion { progressLiveData.postValue(false) }
         }
     }
 

@@ -9,9 +9,9 @@ import com.payday.bank.di.module.view.main.MainViewModelModule
 import com.payday.bank.di.module.view.splash.SplashActivityModule
 import com.payday.bank.di.module.view.splash.SplashViewModelModule
 import com.payday.bank.di.scope.ActivityScope
-import com.payday.bank.view.activity.AuthenticationActivity
 import com.payday.bank.view.activity.MainActivity
-import com.payday.bank.view.activity.SplashActivity
+import com.payday.bank.view.activity.authentication.AuthenticationActivity
+import com.payday.bank.view.activity.authentication.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

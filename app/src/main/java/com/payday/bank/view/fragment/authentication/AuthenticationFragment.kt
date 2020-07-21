@@ -1,4 +1,4 @@
-package com.payday.bank.view.fragment
+package com.payday.bank.view.fragment.authentication
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,9 @@ import androidx.lifecycle.observe
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.payday.bank.R
 import com.payday.bank.domain.entity.Gender
-import com.payday.bank.presentation.AuthenticationViewModel
+import com.payday.bank.presentation.authentication.AuthenticationViewModel
+import com.payday.bank.view.activity.MainActivity
+import com.payday.bank.view.fragment.base.BaseFragment
 import com.payday.bank.view.navigation.FragmentScreen
 import kotlinx.android.synthetic.main.fragment_authentication.dobEditText
 import kotlinx.android.synthetic.main.fragment_authentication.dobInputLayout
@@ -58,6 +60,11 @@ class AuthenticationFragment : BaseFragment<AuthenticationViewModel>(R.layout.fr
             )
         }
         viewModel.dateOfBirthdayStrLiveData.observe(viewLifecycleOwner, dobEditText::setText)
+        viewModel.progressLiveData.observe(viewLifecycleOwner) { progress ->
+            signInButton.isEnabled = !progress
+            signInSwitchButton.isEnabled = !progress
+            signUpButton.isEnabled = !progress
+        }
         viewModel.emailErrorVisibleLiveData.observe(viewLifecycleOwner) {
             emailInputLayout.error = if (it == ResourcesCompat.ID_NULL) null else getString(it)
         }
@@ -83,6 +90,9 @@ class AuthenticationFragment : BaseFragment<AuthenticationViewModel>(R.layout.fr
 
             onError(getString(it))
         }
+        viewModel.openTransactionsScreenLiveData.observe(viewLifecycleOwner) {
+            router.replaceScreen(MainActivity.newInstance())
+        }
 
         signInButton.setOnClickListener { onSignIn() }
         signInSwitchButton.setOnClickListener { onSignIn() }
@@ -105,7 +115,10 @@ class AuthenticationFragment : BaseFragment<AuthenticationViewModel>(R.layout.fr
                     dateOfBirthCallback?.onDateOfBirthCallback(dateOfBirthday)
                 }
             }
-            .show(parentFragmentManager, DATE_PICKER_TAG)
+            .show(
+                parentFragmentManager,
+                DATE_PICKER_TAG
+            )
     }
 
     override fun onDateOfBirthCallback(dateOfBirthdayUtcMs: Long) {

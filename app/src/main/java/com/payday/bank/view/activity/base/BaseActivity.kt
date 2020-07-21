@@ -1,4 +1,4 @@
-package com.payday.bank.view.activity
+package com.payday.bank.view.activity.base
 
 import android.os.Bundle
 import android.view.View
