@@ -1,4 +1,4 @@
-package com.payday.bank.view.navigation
+package com.payday.bank.view.navigation.navigator
 
 import com.payday.bank.view.activity.BaseActivity
 import javax.inject.Inject

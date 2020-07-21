@@ -3,8 +3,6 @@ package com.payday.bank.di.module.view.splash
 import com.payday.bank.di.scope.ActivityScope
 import com.payday.bank.view.activity.BaseActivity
 import com.payday.bank.view.activity.SplashActivity
-import com.payday.bank.view.navigation.BaseNavigator
-import com.payday.bank.view.navigation.DefaultNavigator
 import dagger.Binds
 import dagger.Module
 
@@ -12,7 +10,4 @@ import dagger.Module
 
     @Binds @ActivityScope
     fun bindActivity(activity: SplashActivity): BaseActivity<*>
-
-    @Binds @ActivityScope
-    fun bindNavigator(navigator: DefaultNavigator): BaseNavigator
 }

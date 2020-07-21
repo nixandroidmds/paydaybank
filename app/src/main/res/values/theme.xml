@@ -1,4 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Common -->
 
     <style name="AppTheme"
         parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -11,7 +13,63 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="colorControlNormal">@color/colorControlNormal</item>
         <item name="android:textColorPrimary">@color/textColor</item>
-        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:textColorSecondary">@color/textSecondaryColor</item>
+        <item name="android:windowBackground">@drawable/window_background</item>
+        <item name="editTextStyle">
+            @style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.AppTheme
+        </item>
+        <item name="snackbarStyle">@style/Widget.MaterialComponents.Snackbar.AppTheme</item>
     </style>
+
+    <style name="TextAppearance.Design.Tab.AppTheme" />
+
+    <style name="Widget.MaterialComponents.TextInputEditText.OutlinedBox.AppTheme" />
+
+    <style name="Widget.MaterialComponents.Snackbar.AppTheme">
+        <item name="android:background">@drawable/color_primary_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Splash -->
+
+    <style name="AppTheme.Splash">
+        <item name="android:windowBackground">@drawable/layer_list_splash_background</item>
+    </style>
+
+    <!-- Authentication -->
+
+    <style name="AppTheme.Authentication">
+        <item name="materialButtonStyle">
+            @style/Widget.MaterialComponents.Button.OutlinedButton.Authentication
+        </item>
+        <item name="textInputStyle">
+            @style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Authentication
+        </item>
+    </style>
+
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Authentication">
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeColor">?android:attr/colorPrimaryDark</item>
+        <item name="hintTextColor">?android:attr/colorPrimary</item>
+        <item name="errorTextColor">?attr/colorAccent</item>
+        <item name="android:textColorHint">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Button.OutlinedButton.Authentication">
+        <item name="android:minHeight">64dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="rippleColor">?attr/colorPrimary</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Design.Tab.AppTheme.Gender">
+        <item name="android:textSize"
+            tools:ignore="SpUsage">72dp
+        </item>
+    </style>
+
+    <!-- Transactions -->
 
 </resources>

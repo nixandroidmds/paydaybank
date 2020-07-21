@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="color_primary_dark">@color/colorPrimaryDark</drawable>
+    <drawable name="color_primary">@color/colorPrimary</drawable>
+    <drawable name="window_background">@color/windowBackground</drawable>
+
+</resources>

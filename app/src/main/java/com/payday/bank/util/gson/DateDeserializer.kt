@@ -10,7 +10,7 @@ import java.text.ParseException
 import java.time.ZonedDateTime
 import javax.inject.Inject
 
-class DateDeserializer @Inject constructor() : JsonDeserializer<ZonedDateTime> {
+class DateDeserializer @Inject constructor() : JsonDeserializer<ZonedDateTime?> {
 
     @Throws(JsonParseException::class)
     override fun deserialize(

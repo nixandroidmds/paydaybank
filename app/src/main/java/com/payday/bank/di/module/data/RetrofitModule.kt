@@ -5,26 +5,33 @@ import com.google.gson.GsonBuilder
 import com.payday.bank.BuildConfig
 import com.payday.bank.data.api.ApiAuthenticatedService
 import com.payday.bank.data.api.ApiUnauthenticatedService
+import com.payday.bank.di.qualifier.http.Authenticated
+import com.payday.bank.di.qualifier.http.Unauthenticated
 import com.payday.bank.util.gson.DateDeserializer
+import com.payday.bank.util.gson.DateSerializer
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.Date
+import java.time.ZonedDateTime
 import javax.inject.Singleton
 
 @Module class RetrofitModule {
 
     @Singleton @Provides
-    fun provideGson(dateDeserializer: DateDeserializer): Gson =
+    fun provideGson(dateDeserializer: DateDeserializer, dateSerializer: DateSerializer): Gson =
         GsonBuilder()
-            .registerTypeAdapter(Date::class.java, dateDeserializer)
+            .registerTypeAdapter(ZonedDateTime::class.java, dateDeserializer)
+            .registerTypeAdapter(ZonedDateTime::class.java, dateSerializer)
             .apply { if (BuildConfig.DEBUG) setPrettyPrinting() }
             .create()
 
     @Singleton @Provides
-    fun provideApiService(gson: Gson, client: OkHttpClient): ApiUnauthenticatedService =
+    fun provideApiUnauthenticatedService(
+        gson: Gson,
+        @Unauthenticated client: OkHttpClient
+    ): ApiUnauthenticatedService =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(client)
@@ -33,7 +40,10 @@ import javax.inject.Singleton
             .create(ApiUnauthenticatedService::class.java)
 
     @Singleton @Provides
-    fun provideApiAuthServiceService(gson: Gson, client: OkHttpClient): ApiAuthenticatedService =
+    fun provideApiAuthenticatedServiceService(
+        gson: Gson,
+        @Authenticated client: OkHttpClient
+    ): ApiAuthenticatedService =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(client)

@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://localhost/\"")
+        buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/\"")
         buildConfigField "String[]", "CERTIFICATE_ARR", "{}"
     }
 

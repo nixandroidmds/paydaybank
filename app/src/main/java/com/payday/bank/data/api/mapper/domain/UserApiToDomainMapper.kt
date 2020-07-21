@@ -1,6 +1,7 @@
 package com.payday.bank.data.api.mapper.domain
 
 import com.payday.bank.data.api.entity.UserApiEntity
+import com.payday.bank.domain.entity.Gender
 import com.payday.bank.domain.entity.UserDomainEntity
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ class UserApiToDomainMapper @Inject constructor() {
             id = entity.id,
             firstName = entity.firstName,
             lastName = entity.lastName,
-            gender = entity.gender,
+            gender = Gender.cast(entity.gender),
             email = entity.email,
             password = entity.password,
             zonedDateTime = entity.zonedDateTime,

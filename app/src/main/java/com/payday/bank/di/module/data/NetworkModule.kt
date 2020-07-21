@@ -49,8 +49,8 @@ class NetworkModule {
         certificatePinner: CertificatePinner
     ): OkHttpClient.Builder =
         OkHttpClient.Builder()
-            .addInterceptor(errorInterceptor)
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(errorInterceptor)
             .apply {
                 if (BuildConfig.CERTIFICATE_ARR.isNotEmpty()) {
                     certificatePinner(certificatePinner)

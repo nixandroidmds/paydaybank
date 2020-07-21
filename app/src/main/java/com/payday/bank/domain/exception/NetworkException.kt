@@ -1,11 +1,9 @@
 package com.payday.bank.domain.exception
 
+import java.io.IOException
+
 class NetworkException(
-    message: String,
+    override val messageForUser: String,
     logMessage: String,
     cause: Throwable? = null
-) : MessageException(
-    message = message,
-    logMessage = logMessage,
-    cause = cause
-)
+) : IOException(logMessage ?: messageForUser, cause), MessageForUser
