@@ -1,11 +1,11 @@
-package com.payday.bank.presentation.viewmodel.base
+package com.payday.bank.presentation.base
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import com.payday.bank.BuildConfig
-import com.payday.bank.domain.exception.MessageException
+import com.payday.bank.domain.exception.MessageForUser
 import com.payday.bank.domain.exception.TokenExpiredException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -52,12 +52,12 @@ abstract class BaseViewModel : ViewModel() {
 
     @WorkerThread open fun onFailure(t: Throwable) {
         when (t) {
-            is MessageException -> errorLiveEvent.postValue(t.getMessageForUser())
-
-            is TokenExpiredException -> {
-                // ignored
+            is MessageForUser -> {
+                Timber.i(t)
+                errorLiveEvent.postValue(t.messageForUser)
             }
 
+            is TokenExpiredException -> Timber.i(t)
             else -> Timber.e(t)
         }
     }
@@ -68,7 +68,7 @@ abstract class BaseViewModel : ViewModel() {
         onStart: (CoroutineScope.() -> Unit)? = null,
         onCancellation: ((e: CancellationException) -> Unit)? = null,
         onFailure: ((t: Throwable) -> Unit)? = null,
-        block: CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit
     ) = scope.launch(context, start) {
         try {
             onStart?.invoke(this)

@@ -1,17 +1,21 @@
 package com.payday.bank.view.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.payday.bank.presentation.viewmodel.base.BaseViewModel
-import com.payday.bank.presentation.viewmodel.base.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
+import com.payday.bank.R
+import com.payday.bank.presentation.base.BaseViewModel
+import com.payday.bank.presentation.base.ViewModelFactory
 import com.payday.bank.util.extension.getGenericClass
-import com.payday.bank.view.navigation.BaseNavigator
+import com.payday.bank.view.navigation.navigator.BaseNavigator
 import dagger.android.support.DaggerAppCompatActivity
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 import javax.inject.Inject
 
 abstract class BaseActivity<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int) :
@@ -37,7 +41,14 @@ abstract class BaseActivity<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int)
     }
 
     fun onError(errorMessage: String) {
-        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+        val coordinatorLayout = findViewById<View?>(R.id.coordinatorLayout)
+
+        if (coordinatorLayout == null) {
+            Timber.w("View for snackbar not found")
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+        } else {
+            Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     override fun onResumeFragments() {

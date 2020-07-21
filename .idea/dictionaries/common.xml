@@ -4,6 +4,7 @@
       <w>gson</w>
       <w>iban</w>
       <w>pinner</w>
+      <w>snackbar</w>
       <w>unprocessable</w>
     </words>
   </dictionary>

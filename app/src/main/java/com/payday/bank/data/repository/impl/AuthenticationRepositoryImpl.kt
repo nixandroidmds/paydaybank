@@ -23,7 +23,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
         apiSource.signIn(domainToApiMapper.map(entity)).let(apiToDomainMapper::map)
 
     override suspend fun signUp(entity: UserDomainEntity) =
-        apiSource.signIn(domainToApiMapper.map(entity)).let(apiToDomainMapper::map)
+        apiSource.signUp(domainToApiMapper.map(entity)).let(apiToDomainMapper::map)
 
     override suspend fun signOut() {
         preferencesSource.clear()

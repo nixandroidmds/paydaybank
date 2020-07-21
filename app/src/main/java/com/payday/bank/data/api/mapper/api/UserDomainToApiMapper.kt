@@ -11,7 +11,7 @@ class UserDomainToApiMapper @Inject constructor() {
             id = entity.id,
             firstName = entity.firstName,
             lastName = entity.lastName,
-            gender = entity.gender,
+            gender = entity.gender?.gender,
             email = entity.email,
             password = entity.password,
             zonedDateTime = entity.zonedDateTime,

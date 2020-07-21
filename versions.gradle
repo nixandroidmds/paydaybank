@@ -31,7 +31,7 @@ ext {
                     liveEvent          : "1.2.0",
             ],
             di         : [
-                    dagger: "2.28.2",
+                    dagger: "2.28.3",
             ],
             widget     : [
                     material          : "1.1.0",

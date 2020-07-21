@@ -27,41 +27,41 @@ import javax.net.ssl.SSLHandshakeException
         var url: String? = null
         return try {
             val request = chain.request()
-            url = request.url.host + request.url.encodedQuery
+            url = request.url.toString()
             chain.proceed(request).proceed(url)
         } catch (exception: CertPathValidatorException) {
             throw NetworkException(
-                message = resources.getString(R.string.ssl_handshake_error),
+                messageForUser = resources.getString(R.string.ssl_handshake_error),
                 logMessage = "CertPathValidatorException: $url",
                 cause = exception
             )
         } catch (exception: SSLHandshakeException) {
             throw NetworkException(
-                message = resources.getString(R.string.ssl_handshake_error),
+                messageForUser = resources.getString(R.string.ssl_handshake_error),
                 logMessage = "SSLHandshakeException: $url",
                 cause = exception
             )
         } catch (exception: SSLException) {
             throw NetworkException(
-                message = resources.getString(R.string.ssl_handshake_error),
+                messageForUser = resources.getString(R.string.ssl_handshake_error),
                 logMessage = "NotSecureConnectionException: $url",
                 cause = exception
             )
         } catch (exception: ConnectException) {
             throw NetworkException(
-                message = resources.getString(R.string.internet_error),
+                messageForUser = resources.getString(R.string.internet_error),
                 logMessage = "InternetUnavailableException: $url",
                 cause = exception
             )
         } catch (exception: UnknownHostException) {
             throw NetworkException(
-                message = resources.getString(R.string.internet_error),
+                messageForUser = resources.getString(R.string.internet_error),
                 logMessage = "ServerUnreachableException: $url",
                 cause = exception
             )
         } catch (exception: SocketTimeoutException) {
             throw NetworkException(
-                message = resources.getString(R.string.internet_error),
+                messageForUser = resources.getString(R.string.internet_error),
                 logMessage = "InternetTimeoutException: $url",
                 cause = exception
             )
@@ -69,7 +69,7 @@ import javax.net.ssl.SSLHandshakeException
             throw exception
         } catch (exception: IOException) {
             throw NetworkException(
-                message = resources.getString(R.string.unknown_error),
+                messageForUser = resources.getString(R.string.unknown_error),
                 logMessage = "UnexpectedNetworkException: $url",
                 cause = exception
             )
@@ -77,7 +77,7 @@ import javax.net.ssl.SSLHandshakeException
             throw exception
         } catch (throwable: Throwable) {
             throw NetworkException(
-                message = resources.getString(R.string.unknown_error),
+                messageForUser = resources.getString(R.string.unknown_error),
                 logMessage = "Throwable: $url",
                 cause = throwable
             )
@@ -87,21 +87,25 @@ import javax.net.ssl.SSLHandshakeException
     private fun Response.proceed(url: String): Response {
         when {
             code == HttpCodes.FORBIDDEN || code == HttpCodes.UNAUTHORIZED -> {
-                throw MessageException(
-                    message = resources.getString(R.string.access_unauthorized_error),
-                    logMessage = getServerError(code)
+                throw NetworkException(
+                    messageForUser = resources.getString(R.string.access_unauthorized_error),
+                    logMessage = getServerError(url, code)
                 )
             }
 
             code == HttpCodes.BAD_REQUEST ||
                     code == HttpCodes.PAYMENT_REQUIRED ||
+                    code == HttpCodes.NOT_FOUND ||
                     code == HttpCodes.UNPROCESSABLE_ENTITY -> {
-                TODO(url + "custom process error")
+                throw NetworkException(
+                    messageForUser = resources.getString(R.string.unknown_error),
+                    logMessage = getServerError(url, code)
+                )
             }
 
             header(HttpHeader.HEADER_KEY_CONTENT_TYPE)?.contains(MimeType.TEXT_HTML) == true -> {
-                throw MessageException(
-                    message = resources.getString(R.string.unknown_error),
+                throw NetworkException(
+                    messageForUser = resources.getString(R.string.unknown_error),
                     logMessage = "HTML Page (Invalid response, need ticket for server): $url"
                 )
             }
@@ -113,10 +117,13 @@ import javax.net.ssl.SSLHandshakeException
                 // Success
             }
 
-            else -> throw MessageException(message = getServerError(code))
+            else -> throw NetworkException(
+                messageForUser = resources.getString(R.string.unknown_error),
+                logMessage = getServerError(url, code)
+            )
         }
         return this
     }
 
-    private fun getServerError(code: Int) = "Server Error with code: $code"
+    private fun getServerError(url: String, code: Int) = "Server Error with code: $code; $url"
 }

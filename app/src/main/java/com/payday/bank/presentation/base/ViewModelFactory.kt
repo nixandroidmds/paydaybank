@@ -1,4 +1,4 @@
-package com.payday.bank.presentation.viewmodel.base
+package com.payday.bank.presentation.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

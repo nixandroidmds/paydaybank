@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchParent"
+    android:fillViewport="true"
+    android:paddingTop="@dimen/default_margin"
+    tools:context=".view.activity.AuthenticationActivity">
+
+    <LinearLayout
+        style="@style/Wide"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameInputLayout"
+            style="@style/TextInputLayout.Authentication"
+            android:layout_marginBottom="@dimen/default_quarter_margin"
+            android:visibility="gone"
+            app:errorEnabled="true"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/firstNameEditText"
+                style="@style/Wide"
+                android:hint="@string/authentication_hint_first_name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameInputLayout"
+            style="@style/TextInputLayout.Authentication"
+            android:layout_marginBottom="@dimen/default_quarter_margin"
+            android:visibility="gone"
+            app:errorEnabled="true"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lastNameEditText"
+                style="@style/Wide"
+                android:hint="@string/authentication_hint_last_name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneInputLayout"
+            style="@style/TextInputLayout.Authentication"
+            android:layout_marginBottom="@dimen/default_quarter_margin"
+            android:visibility="gone"
+            app:errorEnabled="true"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneEditText"
+                style="@style/Wide"
+                android:digits="0123456789"
+                android:hint="@string/authentication_hint_phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dobInputLayout"
+            style="@style/TextInputLayout.Authentication"
+            android:layout_marginBottom="@dimen/default_quarter_margin"
+            android:focusable="false"
+            android:visibility="gone"
+            app:errorEnabled="true"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dobEditText"
+                style="@style/Wide"
+                android:focusable="false"
+                android:hint="@string/authentication_hint_dob"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailInputLayout"
+            style="@style/TextInputLayout.Authentication"
+            android:layout_marginBottom="@dimen/default_quarter_margin"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                style="@style/Wide"
+                android:hint="@string/authentication_hint_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="Nadiah.Spoel@example.com" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordInputLayout"
+            style="@style/TextInputLayout.Authentication"
+            android:layout_marginBottom="@dimen/default_quarter_margin"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                style="@style/Wide"
+                android:hint="@string/authentication_hint_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:text="springs" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/genderTabLayout"
+            style="@style/Wide"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_half_margin"
+            android:backgroundTint="@color/transparent"
+            android:visibility="gone"
+            app:tabIndicatorColor="?attr/colorAccent"
+            app:tabMode="auto"
+            app:tabRippleColor="?attr/colorAccent"
+            app:tabSelectedTextColor="?attr/colorAccent"
+            app:tabTextAppearance="@style/TextAppearance.Design.Tab.AppTheme.Gender"
+            app:tabTextColor="@color/textColor"
+            tools:visibility="visible">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/noneTab"
+                style="@style/Wrap"
+                android:text="@string/authentication_tab_gender_none" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/maleTab"
+                style="@style/Wrap"
+                android:text="@string/authentication_tab_gender_male" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/femaleTab"
+                style="@style/Wrap"
+                android:text="@string/authentication_tab_gender_female" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signInButton"
+            style="@style/Wide"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_half_margin"
+            android:text="@string/authentication_button_sign_in"
+            android:textColor="@color/white"
+            app:backgroundTint="?attr/colorPrimary"
+            app:rippleColor="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signUpButton"
+            style="@style/Wide"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_half_margin"
+            android:text="@string/authentication_button_sign_up" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signInSwitchButton"
+            style="@style/Wide"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_half_margin"
+            android:text="@string/authentication_button_sign_in"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,3 +1,5 @@
 package com.payday.bank.domain.exception
 
-class TokenExpiredException : Exception()
+import java.io.IOException
+
+class TokenExpiredException : IOException()

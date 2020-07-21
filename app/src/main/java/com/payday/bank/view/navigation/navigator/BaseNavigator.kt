@@ -1,4 +1,4 @@
-package com.payday.bank.view.navigation
+package com.payday.bank.view.navigation.navigator
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
