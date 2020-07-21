@@ -4,4 +4,4 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchParent"
     android:id="@+id/coordinatorLayout"
-    tools:context=".view.activity.SplashActivity" />
+    tools:context=".view.activity.authentication.SplashActivity" />

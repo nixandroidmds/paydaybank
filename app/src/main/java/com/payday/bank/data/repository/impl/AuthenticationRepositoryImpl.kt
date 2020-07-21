@@ -20,10 +20,16 @@ class AuthenticationRepositoryImpl @Inject constructor(
     override suspend fun getToken() = preferencesSource.getToken()
 
     override suspend fun signIn(entity: UserDomainEntity) =
-        apiSource.signIn(domainToApiMapper.map(entity)).let(apiToDomainMapper::map)
+        apiSource
+            .signIn(domainToApiMapper.map(entity))
+            .also { preferencesSource.saveToken(it.id) }
+            .let(apiToDomainMapper::map)
 
     override suspend fun signUp(entity: UserDomainEntity) =
-        apiSource.signUp(domainToApiMapper.map(entity)).let(apiToDomainMapper::map)
+        apiSource
+            .signUp(domainToApiMapper.map(entity))
+            .also { preferencesSource.saveToken(it.id) }
+            .let(apiToDomainMapper::map)
 
     override suspend fun signOut() {
         preferencesSource.clear()

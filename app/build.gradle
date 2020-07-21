@@ -9,6 +9,9 @@ android {
     compileSdkVersion versions.android.compileSdk
     testOptions.unitTests.includeAndroidResources = true
 
+    def device = "device"
+    flavorDimensions device
+
     defaultConfig {
         applicationId "com.payday.bank"
         minSdkVersion versions.android.minSdk
@@ -18,7 +21,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/\"")
         buildConfigField "String[]", "CERTIFICATE_ARR", "{}"
     }
 
@@ -34,6 +36,17 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    productFlavors {
+        emulator {
+            dimension device
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/\"")
+        }
+        realDevice {
+            dimension device
+            buildConfigField("String", "BASE_URL", "\"http://localhost:3000/\"")
         }
     }
 

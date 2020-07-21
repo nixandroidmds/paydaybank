@@ -1,6 +1,7 @@
 package com.payday.bank.data.api.interceptor
 
 import com.payday.bank.data.repository.base.AuthenticationRepository
+import com.payday.bank.domain.exception.TokenExpiredException
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -17,25 +18,24 @@ import javax.inject.Singleton
     override fun intercept(chain: Interceptor.Chain): Response {
         val token = runBlocking {
             userRepository.runCatching { getToken() }.onFailure(Timber::e).getOrNull()
-        } ?: ""
+        }
 
-        // TODO: remove ?: "" and uncomment after add AUTHORIZATION_HEADER_REQUEST
-        // if (token.isNullOrEmpty()) {
-        //     throw TokenExpiredException()
-        // }
+        if (token.isNullOrEmpty()) {
+            throw TokenExpiredException()
+        }
 
         val request = chain
             .request()
-            .newBuilder()
-            .addHeader(AUTHORIZATION_HEADER_REQUEST, token)
-            .build()
+        // TODO: add authorization token
+        //  .newBuilder()
+        //  .addHeader(AUTHORIZATION_HEADER_REQUEST, token)
+        //  .build()
 
         return chain.proceed(request)
     }
 
-    companion object {
-
-        // TODO: add authorization token
-        private const val AUTHORIZATION_HEADER_REQUEST = "TODO"
-    }
+    // TODO: add authorization token
+    //  companion object {
+    //      private const val AUTHORIZATION_HEADER_REQUEST = "AUTHORIZATION_HEADER_REQUEST"
+    //  }
 }

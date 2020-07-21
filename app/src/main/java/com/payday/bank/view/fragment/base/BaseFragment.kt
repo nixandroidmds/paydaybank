@@ -1,4 +1,4 @@
-package com.payday.bank.view.fragment
+package com.payday.bank.view.fragment.base
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,7 +13,7 @@ import androidx.lifecycle.observe
 import com.payday.bank.presentation.base.BaseViewModel
 import com.payday.bank.presentation.base.ViewModelFactory
 import com.payday.bank.util.extension.getGenericClass
-import com.payday.bank.view.activity.BaseActivity
+import com.payday.bank.view.activity.base.BaseActivity
 import dagger.android.support.DaggerFragment
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
