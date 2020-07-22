@@ -1,11 +1,11 @@
 package com.payday.bank.presentation.transactions
 
 import androidx.lifecycle.MutableLiveData
-import com.payday.bank.data.repository.base.AccountRepository
-import com.payday.bank.data.repository.base.AuthenticationRepository
-import com.payday.bank.data.repository.base.TransactionRepository
 import com.payday.bank.domain.entity.AccountDomainEntity
 import com.payday.bank.domain.entity.TransactionDomainEntity
+import com.payday.bank.domain.repository.AccountRepository
+import com.payday.bank.domain.repository.AuthenticationRepository
+import com.payday.bank.domain.repository.TransactionRepository
 import com.payday.bank.presentation.base.BaseViewModel
 import com.payday.bank.view.entity.BaseTransactionUIEntity
 import com.payday.bank.view.entity.TransactionFilterUiEntity

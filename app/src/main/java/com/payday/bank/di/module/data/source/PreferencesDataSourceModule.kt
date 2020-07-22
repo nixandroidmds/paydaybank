@@ -1,7 +1,7 @@
 package com.payday.bank.di.module.data.source
 
-import com.payday.bank.data.preferences.source.base.AuthenticationPreferencesSource
-import com.payday.bank.data.preferences.source.impl.AuthenticationPreferencesSourceImpl
+import com.payday.bank.data.repository.impl.preferences.AuthenticationPreferencesSourceImpl
+import com.payday.bank.data.repository.preferences.AuthenticationPreferencesSource
 import dagger.Binds
 import dagger.Module
 

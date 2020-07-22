@@ -1,7 +1,7 @@
 package com.payday.bank.presentation.authentication
 
 import com.hadilq.liveevent.LiveEvent
-import com.payday.bank.data.repository.base.AuthenticationRepository
+import com.payday.bank.domain.repository.AuthenticationRepository
 import com.payday.bank.presentation.base.BaseViewModel
 import javax.inject.Inject
 

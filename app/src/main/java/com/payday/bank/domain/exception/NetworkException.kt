@@ -6,4 +6,4 @@ class NetworkException(
     override val messageForUser: String,
     logMessage: String,
     cause: Throwable? = null
-) : IOException(logMessage ?: messageForUser, cause), MessageForUser
+) : IOException(logMessage, cause), MessageForUser
