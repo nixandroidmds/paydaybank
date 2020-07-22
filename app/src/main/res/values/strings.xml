@@ -3,6 +3,7 @@
     <!-- Common -->
 
     <string name="app_name">Pay Day Bank</string>
+    <string name="unknown">Unknown</string>
 
     <!-- Common Error -->
 
@@ -33,5 +34,18 @@
     <string name="authentication_error_phone">Phone required</string>
     <string name="authentication_error_dob">Date of Birthday required</string>
     <string name="authentication_error_gender">Please select your gender</string>
+
+    <!-- Transactions Filtered -->
+
+    <string name="transactions_menu_filter">Filter</string>
+    <string name="transactions_not_fount_pattern">
+        No transactions for the period
+        \nFrom %1$s
+        \nTo %2$s
+    </string>
+    <string name="transactions_logout_title">Log Out</string>
+    <string name="transactions_logout_message">Are you sure you want to log out of your account?</string>
+    <string name="transactions_logout_positive">Logout</string>
+    <string name="transactions_logout_cancel">Cancel</string>
 
 </resources>

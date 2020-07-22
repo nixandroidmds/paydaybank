@@ -4,7 +4,7 @@ import java.time.ZonedDateTime
 
 data class TransactionDomainEntity(
     val id: String?,
-    val accountId: String?,
+    val account: AccountDomainEntity?,
     val amount: Double,
     val vendor: String?,
     val category: String?,

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Wide"
+    android:layout_margin="@dimen/default_margin"
+    tools:context=".view.activity.MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sourceOrDestinationTextView"
+        style="@style/Wrap.Width0"
+        android:paddingBottom="@dimen/default_quarter_margin"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/categoryTextView"
+        app:layout_constraintEnd_toStartOf="@id/amountAndDateBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Grimes, Quigley and Runolfsson" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/categoryTextView"
+        style="@style/Wrap.Width0"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/shortDescriptionTextView"
+        app:layout_constraintEnd_toStartOf="@id/amountAndDateBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sourceOrDestinationTextView"
+        tools:text="Category" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/shortDescriptionTextView"
+        style="@style/Wrap.Width0"
+        android:layout_marginTop="@dimen/default_quarter_margin"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/amountAndDateBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryTextView"
+        tools:text="LB28 **** HUHV (Savings)" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/amountAndDateBarrier"
+        style="@style/Tall"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="amountTextView,dateTextView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/amountTextView"
+        style="@style/Wrap.Height0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/dateTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/amountAndDateBarrier"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="+100000.00"
+        tools:textColor="@color/transactionsFilteredPositive" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dateTextView"
+        style="@style/Wrap"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/amountAndDateBarrier"
+        app:layout_constraintTop_toBottomOf="@id/amountTextView"
+        tools:text="10/10/2012\n10:22" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

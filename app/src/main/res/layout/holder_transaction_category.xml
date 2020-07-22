@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Wide"
+    android:layout_marginStart="@dimen/default_margin"
+    android:layout_marginTop="@dimen/default_half_margin"
+    android:layout_marginEnd="@dimen/default_margin"
+    android:layout_marginBottom="@dimen/default_half_margin"
+    android:background="@drawable/ripple_item_single"
+    android:elevation="@dimen/elevation"
+    android:paddingStart="@dimen/default_margin"
+    android:paddingTop="@dimen/default_half_margin"
+    android:paddingEnd="@dimen/default_margin"
+    android:paddingBottom="@dimen/default_half_margin"
+    tools:context=".view.activity.MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/categoryTextView"
+        style="@style/Wrap.Width0"
+        android:paddingBottom="@dimen/default_quarter_margin"
+        android:textSize="22sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sumBalanceTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Category" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sumBalanceTextView"
+        style="@style/Wrap"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="+1000.00" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

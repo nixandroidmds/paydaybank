@@ -5,4 +5,10 @@
     <dimen name="default_half_margin">8dp</dimen>
     <dimen name="default_quarter_margin">4dp</dimen>
 
+    <dimen name="edit_text_radius">12dp</dimen>
+    <dimen name="button_radius">8dp</dimen>
+    <dimen name="list_radius">10dp</dimen>
+
+    <dimen name="elevation">6dp</dimen>
+
 </resources>

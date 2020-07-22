@@ -46,9 +46,7 @@ class AuthenticationViewModel @Inject constructor(
             signUpModeEnabledLiveData.postValue(false)
             passwordErrorVisibleLiveData.postValue(ID_NULL)
         } else {
-            launchSafe {
-                progressLiveData.postValue(true)
-
+            launchSafe(onStart = { progressLiveData.postValue(true) }) {
                 val email = emailEditable?.toString()?.trim()
                 val password = passwordEditable?.toString()
 

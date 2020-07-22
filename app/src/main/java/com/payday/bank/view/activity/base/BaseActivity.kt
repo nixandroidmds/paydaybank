@@ -13,6 +13,7 @@ import com.payday.bank.presentation.base.ViewModelFactory
 import com.payday.bank.util.extension.getGenericClass
 import com.payday.bank.view.navigation.navigator.BaseNavigator
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
@@ -38,6 +39,8 @@ abstract class BaseActivity<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.errorLiveEvent.observe(this, ::onError)
+
+        toolbar?.let(::setSupportActionBar)
     }
 
     fun onError(errorMessage: String) {

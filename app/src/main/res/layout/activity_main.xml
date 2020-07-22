@@ -7,6 +7,18 @@
     style="@style/MatchParent"
     tools:context=".view.activity.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/Wide"
+        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar.AppTheme">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
         style="@style/MatchParent"

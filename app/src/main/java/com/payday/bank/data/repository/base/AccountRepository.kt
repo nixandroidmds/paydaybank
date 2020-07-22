@@ -4,5 +4,5 @@ import com.payday.bank.domain.entity.AccountDomainEntity
 
 interface AccountRepository {
 
-    suspend fun getAccountList(): List<AccountDomainEntity>
+    suspend fun getAccountList(customerId: String): List<AccountDomainEntity>
 }

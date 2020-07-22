@@ -128,10 +128,10 @@
             android:layout_marginBottom="@dimen/default_half_margin"
             android:backgroundTint="@color/transparent"
             android:visibility="gone"
-            app:tabIndicatorColor="?attr/colorAccent"
+            app:tabIndicatorColor="?attr/colorControlActivated"
             app:tabMode="auto"
-            app:tabRippleColor="?attr/colorAccent"
-            app:tabSelectedTextColor="?attr/colorAccent"
+            app:tabRippleColor="?attr/colorControlActivated"
+            app:tabSelectedTextColor="?attr/colorControlActivated"
             app:tabTextAppearance="@style/TextAppearance.Design.Tab.AppTheme.Gender"
             app:tabTextColor="@color/textColor"
             tools:visibility="visible">
