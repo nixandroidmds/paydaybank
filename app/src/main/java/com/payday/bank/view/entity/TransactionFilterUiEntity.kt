@@ -13,11 +13,18 @@ data class TransactionFilterUiEntity(
     val inactiveVisible: Boolean = false
 ) {
 
-    val dateTo: ZonedDateTime get() = _dateTo ?: LocalDateTime.now().atZone(ZoneId.systemDefault())
+    val dateTo: ZonedDateTime
+        get() = _dateTo ?: LocalDateTime
+            .now()
+            .atZone(ZoneId.systemDefault())
+            .withHour(23)
+            .withMinute(59)
+
+    val hasDateTo get() = _dateTo != null
 
     companion object {
 
-        private const val DATE_FROM_MONTH_BEFORE_MONTH = 30L
+        private const val DATE_FROM_MONTH_BEFORE_MONTH = 3L
         private const val DATE_FROM_FIRST_DAY_IN_MONTH = 1
 
         private val DATE_FROM_DEFAULT = LocalDate

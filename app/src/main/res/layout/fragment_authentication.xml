@@ -95,8 +95,7 @@
                 style="@style/Wide"
                 android:hint="@string/authentication_hint_email"
                 android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:text="Nadiah.Spoel@example.com" />
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,8 +113,7 @@
                 style="@style/Wide"
                 android:hint="@string/authentication_hint_password"
                 android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:text="springs" />
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

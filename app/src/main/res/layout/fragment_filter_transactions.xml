@@ -1,15 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchParent"
+    android:layout_margin="@dimen/default_margin"
     tools:context=".view.activity.MainActivity"
     tools:layout_marginTop="?attr/actionBarSize">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        style="@style/MatchParent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/MatchParent">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fromDateTextView"
+            style="@style/Wrap.Width0"
+            android:layout_marginEnd="@dimen/default_half_margin"
+            android:gravity="center"
+            android:text="@string/transactions_filter_date_from"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/toDateButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/toDateTextView"
+            style="@style/Wrap.Width0"
+            android:layout_marginStart="@dimen/default_half_margin"
+            android:gravity="center"
+            android:text="@string/transactions_filter_date_to"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fromDateButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fromDateButton"
+            style="@style/Wrap.Width0"
+            android:layout_marginEnd="@dimen/default_half_margin"
+            app:layout_constraintEnd_toStartOf="@id/toDateButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fromDateTextView"
+            tools:text="11/11/2020" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toDateButton"
+            style="@style/Wrap.Width0"
+            android:layout_marginStart="@dimen/default_half_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fromDateButton"
+            app:layout_constraintTop_toBottomOf="@id/toDateTextView"
+            tools:text="11/11/2020" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toDateResetButton"
+            style="@style/Wrap.Width0"
+            android:text="@string/transactions_filter_date_to_reset"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/toDateButton"
+            app:layout_constraintStart_toStartOf="@id/toDateButton"
+            app:layout_constraintTop_toBottomOf="@id/toDateButton"
+            tools:visibility="visible" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/activatedVisibleToggle"
+            style="@style/Wide"
+            android:layout_height="?attr/actionBarSize"
+            android:checked="true"
+            android:text="@string/transactions_filter_account_active_visible"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toDateResetButton" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/inactivatedVisibleToggle"
+            style="@style/Wide"
+            android:layout_height="?attr/actionBarSize"
+            android:checked="false"
+            android:text="@string/transactions_filter_account_inactive_visible"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activatedVisibleToggle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/accountsButton"
+            style="@style/Wrap.Width0"
+            android:text="@string/transactions_filter_accounts"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inactivatedVisibleToggle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

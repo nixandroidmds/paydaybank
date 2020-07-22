@@ -16,7 +16,7 @@
     android:paddingBottom="@dimen/default_half_margin"
     tools:context=".view.activity.MainActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/categoryTextView"
         style="@style/Wrap.Width0"
         android:paddingBottom="@dimen/default_quarter_margin"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Category" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/sumBalanceTextView"
         style="@style/Wrap"
         android:textSize="18sp"

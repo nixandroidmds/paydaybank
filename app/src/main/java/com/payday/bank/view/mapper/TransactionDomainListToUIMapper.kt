@@ -34,9 +34,7 @@ class TransactionDomainListToUIMapper @Inject constructor(
 
         val filteredList = list
             .asSequence()
-            .filter {
-                filterEntity.ibanList.isEmpty() || filterEntity.ibanList.contains(it.account?.iban)
-            }
+            .filter { filterEntity.ibanList.contains(it.account?.iban) }
             .filter { it.dateTime != null && it.dateTime in dateFrom..dateTo }
             .filter {
                 when (it.account?.active) {
@@ -50,8 +48,7 @@ class TransactionDomainListToUIMapper @Inject constructor(
                     false -> filterEntity.inactiveVisible
                     else -> filterEntity.inactiveVisible
                 }
-            }
-            .toList()
+            }.toList()
 
         val headerList = listOf(TransactionHeaderUIEntity(dateFromStr, dateToStr))
         val categoryList = filteredList

@@ -24,4 +24,3 @@ fun Resources.getDrawableCompat(
     @ColorRes resId: Int,
     theme: Resources.Theme? = null
 ): Int = ResourcesCompat.getColor(this, resId, theme)
-
