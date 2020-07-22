@@ -1,0 +1,60 @@
+{
+	"first_name":"Konstantin",
+	"last_name":"Rudoi",
+	"type":"human",
+	"married":false,
+	"age":27,
+	"nationality":"Ukrainian",
+	"education":[
+		{
+			"type":"school",
+			"name":"56",
+			"duration":8
+		},
+		{
+			"type":"academy",
+			"name":"Kharkov Academy of Transport Technologies",
+			"duration":3
+		},
+		{
+			"type":"university",
+			"name":"NATIONAL AEROSPACE UNIVERSITY KHARKOV AVIATION INSTITUTE",
+			"duration":5
+		}
+	],
+	"work":{
+		"company_name":"NIX",
+		"role":"senior",
+		"experience":6,
+		"language":[
+			"java",
+			"kotlin",
+			"sql"
+		]
+	},
+	"location":{
+		"county":"Ukraine",
+		"city":"Kharkiv"
+	},
+	"hobby":[
+		"programming",
+		"drawing",
+		"vector_drawing",
+		"mobile_games",
+		"video_games",
+		"writing_poetry",
+		"book_writing",
+		"anime",
+		"films",
+		"psychology",
+		"cats",
+		"tech_blogging",
+		"tech_podcasts"
+	],
+	"dreams":[
+		"programming"
+	],
+	"believes":[
+		"We all deserve a better life, no matter what color, ethnicity or educational background we are"
+	]
+}
