@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.observe
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.payday.bank.R
@@ -110,16 +111,8 @@ class AuthenticationFragment :
             .apply { viewModel.dateOfBirthdayLiveData.value?.let(::setSelection) }
             .build()
             .also { dialog ->
-                dialog.addOnPositiveButtonClickListener { dateOfBirthday ->
-                    val fragment = parentFragmentManager.findFragmentById(R.id.fragmentContainer)
-                    val dateOfBirthCallback = fragment as DateOfBirthCallback?
-                    dateOfBirthCallback?.onDateOfBirthCallback(dateOfBirthday)
-                }
-            }
-            .show(
-                parentFragmentManager,
-                DATE_PICKER_TAG
-            )
+                dialog.addOnPositiveButtonClickListener { onNewBirthday(dialog, it) }
+            }.show(parentFragmentManager, DATE_PICKER_TAG)
     }
 
     override fun onDateOfBirthCallback(dateOfBirthdayUtcMs: Long) {
@@ -156,5 +149,11 @@ class AuthenticationFragment :
         private val DATE_PICKER_TAG = MaterialDatePicker::class.java.name
 
         private const val DATE_OF_BIRTHDAY_ARG = "DATE_OF_BIRTHDAY_ARG"
+
+        private fun onNewBirthday(dialog: DialogFragment, dateOfBirthday: Long) {
+            val fragment = dialog.parentFragmentManager.findFragmentById(R.id.fragmentContainer)
+            val dateOfBirthCallback = fragment as DateOfBirthCallback?
+            dateOfBirthCallback?.onDateOfBirthCallback(dateOfBirthday)
+        }
     }
 }

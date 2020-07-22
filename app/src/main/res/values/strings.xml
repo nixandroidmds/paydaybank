@@ -48,4 +48,14 @@
     <string name="transactions_logout_positive">Logout</string>
     <string name="transactions_logout_cancel">Cancel</string>
 
+    <!-- Transactions Filter -->
+
+    <string name="transactions_filter_title">Filter</string>
+    <string name="transactions_filter_date_from">From</string>
+    <string name="transactions_filter_date_to">To</string>
+    <string name="transactions_filter_date_to_reset">Reset \'To\'</string>
+    <string name="transactions_filter_account_active_visible">Active Account</string>
+    <string name="transactions_filter_account_inactive_visible">Inactive Account</string>
+    <string name="transactions_filter_accounts">Accounts</string>
+
 </resources>

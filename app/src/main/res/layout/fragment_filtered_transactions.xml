@@ -16,7 +16,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/holder_transaction" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/transactionsNotFountTextView"
             style="@style/Wrap"
             android:layout_gravity="center"

@@ -11,7 +11,9 @@ import com.payday.bank.view.entity.BaseTransactionUIEntity
 import com.payday.bank.view.entity.TransactionFilterUiEntity
 import com.payday.bank.view.mapper.TransactionDomainListToUIMapper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class TransactionsViewModel @Inject constructor(
@@ -21,14 +23,18 @@ class TransactionsViewModel @Inject constructor(
     private val transactionToUIMapper: TransactionDomainListToUIMapper
 ) : BaseViewModel() {
 
-    @Volatile private var transactionDomainList = listOf<TransactionDomainEntity>()
-    var transactionFilter = TransactionFilterUiEntity()
-        set(value) {
-            field = value
+    private var job: Job? = null
 
-            launchSafe(onStart = { progressLiveData.postValue(true) }) {
-                mapToTransactionsUiEntity()
-            }.invokeOnCompletion { progressLiveData.postValue(false) }
+    @Volatile private var transactionDomainList = listOf<TransactionDomainEntity>()
+    val transactionFilterLiveData =
+        object : MutableLiveData<TransactionFilterUiEntity>(TransactionFilterUiEntity()) {
+            override fun setValue(value: TransactionFilterUiEntity?) {
+                super.setValue(value)
+                job?.cancel()
+                job = launchSafe(onStart = { progressLiveData.postValue(true) }) {
+                    mapToTransactionsUiEntity()
+                }.apply { invokeOnCompletion { progressLiveData.postValue(false) } }
+            }
         }
 
     val progressLiveData = MutableLiveData(false)
@@ -41,27 +47,40 @@ class TransactionsViewModel @Inject constructor(
     }
 
     fun refresh() {
-        launchSafe(onStart = { progressLiveData.postValue(true) }) {
-            downloadTransactions(downloadAccounts())
-        }.invokeOnCompletion { progressLiveData.postValue(false) }
+        job?.cancel()
+        job = launchSafe(onStart = { progressLiveData.postValue(true) }) {
+            downloadData()
+        }.apply { invokeOnCompletion { progressLiveData.postValue(false) } }
     }
 
-    private suspend fun downloadAccounts(): List<AccountDomainEntity> {
+    private suspend fun downloadData() {
         val customerId = authenticationRepository.getToken()
-        val accountList = accountRepository
-            .getAccountList(customerId)
+        val accountList = accountRepository.getAccountList(customerId)
+        val oldAccountList = accountListLiveData.value
         accountListLiveData.postValue(accountList)
-        return accountList
-    }
 
-    private suspend fun downloadTransactions(accountList: List<AccountDomainEntity>) {
         transactionDomainList = transactionRepository.getTransactionList(accountList)
+
+        if (oldAccountList.isNullOrEmpty()) {
+            transactionFilterLiveData.postValue(
+                transactionFilterLiveData.value?.copy(
+                    ibanList = accountList.mapNotNull(AccountDomainEntity::iban)
+                )
+            )
+        }
+
         mapToTransactionsUiEntity()
     }
 
-    private suspend fun mapToTransactionsUiEntity() =
+    private suspend fun mapToTransactionsUiEntity() {
         withContext(Dispatchers.Unconfined) {
-            val list = transactionToUIMapper.map(transactionDomainList, transactionFilter)
-            transactionUiListLiveData.postValue(list)
+            val filterEntity = transactionFilterLiveData.value
+            if (filterEntity == null) {
+                Timber.e("filter is null")
+            } else {
+                val list = transactionToUIMapper.map(transactionDomainList, filterEntity)
+                transactionUiListLiveData.postValue(list)
+            }
         }
+    }
 }

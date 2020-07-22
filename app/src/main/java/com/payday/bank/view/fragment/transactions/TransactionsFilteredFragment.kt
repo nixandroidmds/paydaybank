@@ -1,15 +1,16 @@
 package com.payday.bank.view.fragment.transactions
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.lifecycle.observe
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.payday.bank.R
 import com.payday.bank.presentation.transactions.TransactionsFilteredViewModel
 import com.payday.bank.presentation.transactions.TransactionsViewModel
@@ -25,19 +26,23 @@ import kotlinx.android.synthetic.main.fragment_filtered_transactions.transaction
 class TransactionsFilteredFragment :
     BaseFragment<TransactionsFilteredViewModel>(R.layout.fragment_filtered_transactions) {
 
+    private var navigationIcon: Drawable? = null
+
     private val adapter by lazy { TransactionsAdapter() }
 
     private val sharedViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get<TransactionsViewModel>()
     }
+    override val titleRes = R.string.app_name
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activity = requireActivity()
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
 
         setHomeIconEnabled(true)
-        activity.findViewById<Toolbar>(R.id.toolbar).setNavigationIcon(R.drawable.ic_ui_exit)
+        navigationIcon = toolbar.navigationIcon
+        toolbar.setNavigationIcon(R.drawable.ic_ui_exit)
 
         sharedViewModel.accountListLiveData.observe(viewLifecycleOwner) {
             requireActivity().invalidateOptionsMenu()
@@ -49,8 +54,8 @@ class TransactionsFilteredFragment :
                 transactionsNotFountTextView.isVisible = true
                 transactionsNotFountTextView.text = getString(
                     R.string.transactions_not_fount_pattern,
-                    DateUtils.formatToUserDate(sharedViewModel.transactionFilter.dateFrom),
-                    DateUtils.formatToUserDate(sharedViewModel.transactionFilter.dateTo)
+                    DateUtils.formatToUserDate(sharedViewModel.transactionFilterLiveData.value?.dateFrom),
+                    DateUtils.formatToUserDate(sharedViewModel.transactionFilterLiveData.value?.dateTo)
                 )
             } else {
                 transactionsNotFountTextView.isGone = true
@@ -80,7 +85,7 @@ class TransactionsFilteredFragment :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                AlertDialog.Builder(requireContext())
+                MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.transactions_logout_title)
                     .setMessage(R.string.transactions_logout_message)
                     .setPositiveButton(R.string.transactions_logout_positive) { _, _ ->
@@ -89,22 +94,27 @@ class TransactionsFilteredFragment :
                     .show()
             }
 
-            R.id.filterMenu -> {
-                router.navigateTo(
-                    TransactionsFilterFragment.newInstance(
-                        accountList = sharedViewModel.accountListLiveData.value ?: listOf(),
-                        transactionFilter = sharedViewModel.transactionFilter
-                    )
-                )
-            }
-
+            R.id.filterMenu -> router.navigateTo(TransactionsFilterFragment.newInstance())
             else -> return super.onOptionsItemSelected(item)
         }
         return true
     }
 
+    override fun onStart() {
+        super.onStart()
+        requireActivity()
+            .findViewById<Toolbar>(R.id.toolbar)
+            .setNavigationIcon(R.drawable.ic_ui_exit)
+    }
+
+    override fun onStop() {
+        requireActivity().findViewById<Toolbar>(R.id.toolbar).navigationIcon = navigationIcon
+        super.onStop()
+    }
+
     override fun onDestroyView() {
         list.adapter = null
+
         super.onDestroyView()
     }
 
