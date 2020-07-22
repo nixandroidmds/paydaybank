@@ -30,8 +30,9 @@ import kotlinx.android.synthetic.main.fragment_authentication.signInButton
 import kotlinx.android.synthetic.main.fragment_authentication.signInSwitchButton
 import kotlinx.android.synthetic.main.fragment_authentication.signUpButton
 
-class AuthenticationFragment : BaseFragment<AuthenticationViewModel>(R.layout.fragment_authentication),
-                               DateOfBirthCallback {
+class AuthenticationFragment :
+    BaseFragment<AuthenticationViewModel>(R.layout.fragment_authentication),
+    DateOfBirthCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

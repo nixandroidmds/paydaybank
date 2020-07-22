@@ -1,8 +1,9 @@
 package com.payday.bank.data.repository.base
 
+import com.payday.bank.domain.entity.AccountDomainEntity
 import com.payday.bank.domain.entity.TransactionDomainEntity
 
 interface TransactionRepository {
 
-    suspend fun getTransactionList(): List<TransactionDomainEntity>
+    suspend fun getTransactionList(accountList: List<AccountDomainEntity>): List<TransactionDomainEntity>
 }

@@ -4,6 +4,13 @@
     <style name="TextInputLayout"
         parent="Wide" />
 
+    <style name="Toolbar"
+        parent="Wide">
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.AppTheme</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
     <!-- Authentication -->
 
     <style name="TextInputLayout.Authentication">

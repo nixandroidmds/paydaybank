@@ -1,18 +1,19 @@
 package com.payday.bank.data.api.mapper.domain
 
 import com.payday.bank.data.api.entity.TransactionApiEntity
+import com.payday.bank.domain.entity.AccountDomainEntity
 import com.payday.bank.domain.entity.TransactionDomainEntity
 import javax.inject.Inject
 
 class TransactionApiToDomainMapper @Inject constructor() {
 
-    fun map(entity: TransactionApiEntity) =
+    fun map(transaction: TransactionApiEntity, accountList: List<AccountDomainEntity>) =
         TransactionDomainEntity(
-            id = entity.id,
-            accountId = entity.accountId,
-            amount = entity.amount ?: 0.0,
-            vendor = entity.vendor,
-            category = entity.category,
-            dateTime = entity.dateTime
+            id = transaction.id,
+            account = accountList.firstOrNull { transaction.accountId == it.id },
+            amount = transaction.amount ?: 0.0,
+            vendor = transaction.vendor,
+            category = transaction.category,
+            dateTime = transaction.dateTime
         )
 }

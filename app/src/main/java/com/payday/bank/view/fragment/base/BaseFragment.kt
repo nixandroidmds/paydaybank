@@ -22,6 +22,9 @@ import javax.inject.Inject
 abstract class BaseFragment<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int) :
     DaggerFragment(contentLayoutId) {
 
+    @get:MenuRes protected open val titleRes: Int? = null
+    protected open val title: String? get() = titleRes?.let(resources::getString)
+
     @get:MenuRes protected open val menuRes: Int? = null
 
     @Inject protected lateinit var viewModelFactory: ViewModelFactory
@@ -36,6 +39,8 @@ abstract class BaseFragment<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().actionBar?.title = title
+
         viewModel.errorLiveEvent.observe(viewLifecycleOwner, ::onError)
 
         setHasOptionsMenu(menuRes?.takeIf { it != ResourcesCompat.ID_NULL } != null)

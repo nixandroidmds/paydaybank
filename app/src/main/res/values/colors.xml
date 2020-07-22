@@ -6,17 +6,24 @@
 
     <color name="ic_launcher_background">#38B5FF</color>
 
+    <color name="colorError">@color/colorControlActivated</color>
+
     <color name="colorPrimaryDark">#0180B5</color>
     <color name="colorPrimary">@color/ic_launcher_background</color>
-    <color name="colorAccent">#e50035</color>
+    <color name="colorAccent">@color/white</color>
     <color name="colorAccentLight">#FF809D</color>
 
-    <color name="colorControlActivated">@color/colorAccent</color>
+    <color name="colorControlActivated">#e50035</color>
     <color name="colorControlHighlight">@color/colorAccentLight</color>
     <color name="colorControlNormal">@color/colorPrimary</color>
 
     <color name="textColor">#465C5B</color>
     <color name="textSecondaryColor">#B0C9D8</color>
     <color name="windowBackground">#fff</color>
+
+    <!-- Transactions Filtered -->
+
+    <color name="transactionsFilteredNegative">@color/colorControlActivated</color>
+    <color name="transactionsFilteredPositive">@color/colorPrimary</color>
 
 </resources>

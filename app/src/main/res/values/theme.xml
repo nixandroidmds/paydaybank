@@ -19,6 +19,23 @@
             @style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.AppTheme
         </item>
         <item name="snackbarStyle">@style/Widget.MaterialComponents.Snackbar.AppTheme</item>
+        <item name="android:textViewStyle">@style/Widget.MaterialComponents.TextView.AppTheme</item>
+        <item name="materialButtonStyle">
+            @style/Widget.MaterialComponents.Button.OutlinedButton.AppTheme
+        </item>
+        <item name="textInputStyle">
+            @style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.AppTheme
+        </item>
+    </style>
+
+    <style name="ThemeOverlay.MaterialComponents.ActionBar.AppTheme">
+        <item name="colorControlNormal">?attr/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+    </style>
+
+    <style name="ThemeOverlay.MaterialComponents.AppTheme"
+        parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="colorControlHighlight">?attr/colorAccent</item>
     </style>
 
     <style name="TextAppearance.Design.Tab.AppTheme" />
@@ -28,6 +45,23 @@
     <style name="Widget.MaterialComponents.Snackbar.AppTheme">
         <item name="android:background">@drawable/color_primary_dark</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.TextView.AppTheme">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.AppTheme">
+        <item name="boxCornerRadiusBottomEnd">@dimen/edit_text_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/edit_text_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/edit_text_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/edit_text_radius</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Button.OutlinedButton.AppTheme">
+        <item name="android:minHeight">64dp</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
     </style>
 
     <!-- Splash -->
@@ -40,25 +74,23 @@
 
     <style name="AppTheme.Authentication">
         <item name="materialButtonStyle">
-            @style/Widget.MaterialComponents.Button.OutlinedButton.Authentication
+            @style/Widget.MaterialComponents.Button.OutlinedButton.AppTheme.Authentication
         </item>
         <item name="textInputStyle">
-            @style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Authentication
+            @style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.AppTheme.Authentication
         </item>
     </style>
 
-    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Authentication">
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.AppTheme.Authentication">
         <item name="boxBackgroundColor">@color/white</item>
         <item name="boxStrokeColor">?android:attr/colorPrimaryDark</item>
         <item name="hintTextColor">?android:attr/colorPrimary</item>
-        <item name="errorTextColor">?attr/colorAccent</item>
+        <item name="errorTextColor">@color/colorError</item>
         <item name="android:textColorHint">?android:attr/textColorSecondary</item>
     </style>
 
-    <style name="Widget.MaterialComponents.Button.OutlinedButton.Authentication">
-        <item name="android:minHeight">64dp</item>
+    <style name="Widget.MaterialComponents.Button.OutlinedButton.AppTheme.Authentication">
         <item name="android:textSize">20sp</item>
-        <item name="cornerRadius">8dp</item>
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="rippleColor">?attr/colorPrimary</item>
         <item name="strokeColor">?attr/colorPrimary</item>

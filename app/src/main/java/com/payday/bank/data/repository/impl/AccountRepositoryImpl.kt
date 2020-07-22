@@ -10,6 +10,11 @@ class AccountRepositoryImpl @Inject constructor(
     private val apiToDomainMapper: AccountApiToDomainMapper
 ) : AccountRepository {
 
-    override suspend fun getAccountList() =
-        apiSource.getAccountList().map(apiToDomainMapper::map)
+    override suspend fun getAccountList(customerId: String) =
+        apiSource
+            .getAccountList()
+            .asSequence()
+            .filter { it.customerId == customerId }
+            .map(apiToDomainMapper::map)
+            .toList()
 }

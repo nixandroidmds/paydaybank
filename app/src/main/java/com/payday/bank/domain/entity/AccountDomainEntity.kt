@@ -9,4 +9,19 @@ data class AccountDomainEntity(
     val type: String?,
     val createdDateTime: ZonedDateTime?,
     val active: Boolean
-)
+) {
+
+    val anonymousIban: String?
+        get() {
+            val ibanPartList = iban?.split(" ")
+            return if (!ibanPartList.isNullOrEmpty() && ibanPartList.size > 4) {
+                val first = ibanPartList.first()
+                val last = ibanPartList.last()
+                val lastBeforeLast = ibanPartList[ibanPartList.lastIndex - 1]
+
+                "$first **** $lastBeforeLast $last"
+            } else {
+                null
+            }
+        }
+}
