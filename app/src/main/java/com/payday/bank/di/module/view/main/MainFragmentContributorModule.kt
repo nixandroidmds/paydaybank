@@ -9,8 +9,8 @@ import dagger.android.ContributesAndroidInjector
 @Module interface MainFragmentContributorModule {
 
     @ContributesAndroidInjector @FragmentScope
-    abstract fun contributesTransactionsFilteredFragmentInjector(): TransactionsFilteredFragment
+    fun contributesTransactionsFilteredFragmentInjector(): TransactionsFilteredFragment
 
     @ContributesAndroidInjector @FragmentScope
-    abstract fun contributesTransactionsFilterFragmentInjector(): TransactionsFilterFragment
+    fun contributesTransactionsFilterFragmentInjector(): TransactionsFilterFragment
 }

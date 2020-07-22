@@ -7,9 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.hadilq.liveevent.LiveEvent
 import com.payday.bank.R
-import com.payday.bank.data.repository.base.AuthenticationRepository
 import com.payday.bank.domain.entity.Gender
 import com.payday.bank.domain.entity.UserDomainEntity
+import com.payday.bank.domain.repository.AuthenticationRepository
 import com.payday.bank.presentation.base.BaseViewModel
 import com.payday.bank.util.date.DateUtils
 import com.payday.bank.util.string.StringPattern

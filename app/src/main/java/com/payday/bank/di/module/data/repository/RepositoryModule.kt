@@ -1,13 +1,13 @@
 package com.payday.bank.di.module.data.repository
 
-import com.payday.bank.data.repository.base.AccountRepository
-import com.payday.bank.data.repository.base.AuthenticationRepository
-import com.payday.bank.data.repository.base.TransactionRepository
-import com.payday.bank.data.repository.impl.AccountRepositoryImpl
-import com.payday.bank.data.repository.impl.AuthenticationRepositoryImpl
-import com.payday.bank.data.repository.impl.TransactionRepositoryImpl
+import com.payday.bank.data.repository.AccountRepositoryImpl
+import com.payday.bank.data.repository.AuthenticationRepositoryImpl
+import com.payday.bank.data.repository.TransactionRepositoryImpl
 import com.payday.bank.di.module.data.source.ApiDataSourceModule
 import com.payday.bank.di.module.data.source.PreferencesDataSourceModule
+import com.payday.bank.domain.repository.AccountRepository
+import com.payday.bank.domain.repository.AuthenticationRepository
+import com.payday.bank.domain.repository.TransactionRepository
 import dagger.Binds
 import dagger.Module
 
